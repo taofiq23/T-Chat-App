@@ -157,7 +157,7 @@ const SignUpPage = () => {
 
       <AuthImagePattern
         title="Hey, This is Taofiq"
-        subtitle="Connect with friends, Enjoy special fetures, and stay in touch with your loved ones."
+        subtitle="Connect with friends, Enjoy special features, and stay in touch with your loved ones."
       />
     </div>
   );

@@ -20,18 +20,18 @@ const ChatContainer = () => {
   const messageEndRef = useRef(null);
 
   useEffect(() => {
-    if (!selectedUser) return; // Check if selectedUser exists
     getMessages(selectedUser._id);
+
     subscribeToMessages();
 
     return () => unsubscribeFromMessages();
-  }, [selectedUser, getMessages, subscribeToMessages, unsubscribeFromMessages]);
+  }, [selectedUser._id, getMessages, subscribeToMessages, unsubscribeFromMessages]);
 
   useEffect(() => {
-    if (messageEndRef.current) {
+    if (messageEndRef.current && messages) {
       messageEndRef.current.scrollIntoView({ behavior: "smooth" });
     }
-  }, [messages.length]); // Use messages.length instead of messages
+  }, [messages]);
 
   if (isMessagesLoading) {
     return (
@@ -43,36 +43,24 @@ const ChatContainer = () => {
     );
   }
 
-  if (!messages.length) {
-    return (
-      <div className="flex-1 flex flex-col overflow-auto">
-        <ChatHeader />
-        <div className="flex-1 flex items-center justify-center">
-          <p className="text-gray-500">No messages yet. Start the conversation!</p>
-        </div>
-        <MessageInput />
-      </div>
-    );
-  }
-
   return (
     <div className="flex-1 flex flex-col overflow-auto">
       <ChatHeader />
 
       <div className="flex-1 overflow-y-auto p-4 space-y-4">
-        {messages.map((message, index) => (
+        {messages.map((message) => (
           <div
             key={message._id}
             className={`chat ${message.senderId === authUser._id ? "chat-end" : "chat-start"}`}
-            ref={index === messages.length - 1 ? messageEndRef : null} // Only attach to the last message
+            ref={messageEndRef}
           >
-            <div className="chat-image avatar">
+            <div className=" chat-image avatar">
               <div className="size-10 rounded-full border">
                 <img
                   src={
                     message.senderId === authUser._id
-                      ? authUser.profilePic || "/images.png"
-                      : selectedUser?.profilePic || "/images.png" // Optional chaining
+                      ? authUser.profilePic || "/avatar.png"
+                      : selectedUser.profilePic || "/avatar.png"
                   }
                   alt="profile pic"
                 />
@@ -89,9 +77,6 @@ const ChatContainer = () => {
                   src={message.image}
                   alt="Attachment"
                   className="sm:max-w-[200px] rounded-md mb-2"
-                  onError={(e) => {
-                    e.target.style.display = "none"; // Hide the image if it fails to load
-                  }}
                 />
               )}
               {message.text && <p>{message.text}</p>}
@@ -104,5 +89,4 @@ const ChatContainer = () => {
     </div>
   );
 };
-
 export default ChatContainer;
