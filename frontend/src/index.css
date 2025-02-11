@@ -81,3 +81,141 @@
 .animate-spin-slow {
   animation: spin-slow 6s linear infinite;
 }
+
+
+/* for navbar tchat-container */
+
+
+@keyframes float-3d {
+  0%, 100% { transform: translate(0, 0) rotateX(0) rotateY(0) scale(1); }
+  20% { transform: translate(2px, -2px) rotateX(3deg) rotateY(3deg) scale(1.02); }
+  40% { transform: translate(-2px, 2px) rotateX(-3deg) rotateY(-3deg) scale(0.98); }
+  60% { transform: translate(3px, 3px) rotateX(2deg) rotateY(-2deg) scale(1.01); }
+  80% { transform: translate(-3px, -1px) rotateX(-2deg) rotateY(2deg) scale(0.99); }
+}
+
+@keyframes morph-border-fast {
+  0% { border-radius: 25%; transform: scale(1); border-color: rgba(255,255,255,0.2); }
+  50% { border-radius: 30% 20% 30% 20%; transform: scale(1.05); border-color: rgba(255,255,255,0.4); }
+  100% { border-radius: 25%; transform: scale(1); border-color: rgba(255,255,255,0.2); }
+}
+
+@keyframes particle-quick {
+  0% { transform: translate(0,0) scale(0); opacity: 1; }
+  100% { transform: translate(rand(-10px,10px), rand(-10px,10px)) scale(2); opacity: 0; }
+}
+
+@keyframes radiate-fast {
+  from { transform: scale(0); opacity: 0.2; }
+  to { transform: scale(1.8); opacity: 0; }
+}
+
+@keyframes conic-sweep-fast {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes ripple-circle {
+  0% { transform: scale(0); opacity: 0.4; border: 1px solid rgba(255,255,255,0.3); }
+  100% { transform: scale(2); opacity: 0; border: 1px solid rgba(255,255,255,0); }
+}
+
+.animate-float-3d { animation: float-3d 6s ease-in-out infinite; }
+.animate-morph-border-fast { animation: morph-border-fast 4s ease-in-out infinite; }
+.animate-particle-quick { animation: particle-quick 1s ease-out infinite; }
+.animate-radiate-fast { animation: radiate-fast 2s linear infinite; }
+.animate-conic-sweep-fast { animation: conic-sweep-fast 5s linear infinite; }
+.animate-ripple-circle { animation: ripple-circle 3s ease-out infinite; }
+.animate-text-glow-fast { animation: text-glow 2s ease-in-out infinite; }
+/* styels for login page logo */
+@keyframes float-3d {
+  0%, 100% { transform: translate(0, 0) rotateX(0) rotateY(0) scale(1); }
+  20% { transform: translate(2px, -2px) rotateX(3deg) rotateY(3deg) scale(1.02); }
+  40% { transform: translate(-2px, 2px) rotateX(-3deg) rotateY(-3deg) scale(0.98); }
+  60% { transform: translate(3px, 3px) rotateX(2deg) rotateY(-2deg) scale(1.01); }
+  80% { transform: translate(-3px, -1px) rotateX(-2deg) rotateY(2deg) scale(0.99); }
+}
+
+@keyframes morph-border-fast {
+  0% { border-radius: 25%; transform: scale(1); border-color: rgba(255,255,255,0.2); }
+  50% { border-radius: 30% 20% 30% 20%; transform: scale(1.05); border-color: rgba(255,255,255,0.4); }
+  100% { border-radius: 25%; transform: scale(1); border-color: rgba(255,255,255,0.2); }
+}
+
+@keyframes particle-quick {
+  0% { transform: translate(0,0) scale(0); opacity: 1; }
+  100% { transform: translate(rand(-10px,10px), rand(-10px,10px)) scale(2); opacity: 0; }
+}
+
+@keyframes radiate-fast {
+  from { transform: scale(0); opacity: 0.2; }
+  to { transform: scale(1.8); opacity: 0; }
+}
+
+@keyframes conic-sweep-fast {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes ripple-circle {
+  0% { transform: scale(0); opacity: 0.4; border: 1px solid rgba(255,255,255,0.3); }
+  100% { transform: scale(2); opacity: 0; border: 1px solid rgba(255,255,255,0); }
+}
+
+.animate-float-3d { animation: float-3d 6s ease-in-out infinite; }
+.animate-morph-border-fast { animation: morph-border-fast 4s ease-in-out infinite; }
+.animate-particle-quick { animation: particle-quick 1s ease-out infinite; }
+.animate-radiate-fast { animation: radiate-fast 2s linear infinite; }
+.animate-conic-sweep-fast { animation: conic-sweep-fast 5s linear infinite; }
+.animate-ripple-circle { animation: ripple-circle 3s ease-out infinite; }
+.animate-text-glow-fast { animation: text-glow 2s ease-in-out infinite; }
+
+@keyframes text-glow {
+  0%, 100% { opacity: 0.8; text-shadow: 0 0 10px rgba(76,175,80,0.3); }
+  50% { opacity: 1; text-shadow: 0 0 20px rgba(76,175,80,0.6); }
+}
+
+.animate-text-glow-fast { animation: text-glow 2s ease-in-out infinite; }
+
+/* for signup page */
+@keyframes float-3d {
+  0%, 100% { transform: translate(0, 0) rotateX(0) rotateY(0) scale(1); }
+  20% { transform: translate(2px, -2px) rotateX(3deg) rotateY(3deg) scale(1.02); }
+  40% { transform: translate(-2px, 2px) rotateX(-3deg) rotateY(-3deg) scale(0.98); }
+  60% { transform: translate(3px, 3px) rotateX(2deg) rotateY(-2deg) scale(1.01); }
+  80% { transform: translate(-3px, -1px) rotateX(-2deg) rotateY(2deg) scale(0.99); }
+}
+
+@keyframes morph-border-fast {
+  0% { border-radius: 25%; transform: scale(1); border-color: rgba(255,255,255,0.2); }
+  50% { border-radius: 30% 20% 30% 20%; transform: scale(1.05); border-color: rgba(255,255,255,0.4); }
+  100% { border-radius: 25%; transform: scale(1); border-color: rgba(255,255,255,0.2); }
+}
+
+@keyframes particle-quick {
+  0% { transform: translate(0,0) scale(0); opacity: 1; }
+  100% { transform: translate(rand(-10px,10px), rand(-10px,10px)) scale(2); opacity: 0; }
+}
+
+@keyframes radiate-fast {
+  from { transform: scale(0); opacity: 0.2; }
+  to { transform: scale(1.8); opacity: 0; }
+}
+
+@keyframes conic-sweep-fast {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes ripple-circle {
+  0% { transform: scale(0); opacity: 0.4; border: 1px solid rgba(255,255,255,0.3); }
+  100% { transform: scale(2); opacity: 0; border: 1px solid rgba(255,255,255,0); }
+}
+
+.animate-float-3d { animation: float-3d 6s ease-in-out infinite; }
+.animate-morph-border-fast { animation: morph-border-fast 4s ease-in-out infinite; }
+.animate-particle-quick { animation: particle-quick 1s ease-out infinite; }
+.animate-radiate-fast { animation: radiate-fast 2s linear infinite; }
+.animate-conic-sweep-fast { animation: conic-sweep-fast 5s linear infinite; }
+.animate-ripple-circle { animation: ripple-circle 3s ease-out infinite; }
+.animate-text-glow-fast { animation: text-glow 2s ease-in-out infinite; }
