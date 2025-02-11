@@ -74,3 +74,10 @@
 .animate-pulse {
   animation: pulse 1.5s ease-in-out infinite;
 }
+
+@keyframes spin-slow {
+  to { transform: rotate(360deg); }
+}
+.animate-spin-slow {
+  animation: spin-slow 6s linear infinite;
+}

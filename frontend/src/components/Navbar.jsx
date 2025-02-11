@@ -12,15 +12,19 @@ const Navbar = () => {
           {/* Left Section - Profile */}
           {authUser && (
             <Link
-              to="/profile"
-              className="flex items-center gap-2 group hover:opacity-90 transition-opacity"
+            to="/profile"
+            className="flex items-center gap-2 group hover:opacity-90 transition-opacity"
             >
-              <div className="p-2 rounded-xl bg-gradient-to-tr from-purple-500 to-pink-500 shadow-md transform transition-all duration-300 hover:scale-95 animate-float">
-                <UserCircle className="w-6 h-6 text-white animate-spin-slow" />
-              </div>
-              <span className="text-base font-semibold text-gray-700 dark:text-gray-200">
-                Profile
-              </span>
+            <div className="p-2 rounded-xl bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors duration-200 relative">
+              {/* Animated orbiting ring */}
+              <div className="absolute inset-0 rounded-full border-2 border-transparent border-t-white/30 animate-spin-slow" />
+              
+              {/* Profile icon with hover scale */}
+              <UserCircle className="w-5 h-5 text-white transition-transform duration-300 group-hover:scale-110" />
+            </div>
+            <span className="text-base font-semibold text-gray-700 dark:text-gray-200">
+              Profile
+            </span>
             </Link>
           )}
 
