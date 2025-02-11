@@ -102,3 +102,5 @@ const Sidebar = () => {
 };
 
 export default Sidebar;
+
+// the main code is here

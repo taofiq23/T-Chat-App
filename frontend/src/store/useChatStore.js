@@ -63,6 +63,28 @@ export const useChatStore = create((set, get) => ({
     const socket = useAuthStore.getState().socket;
     socket.off("newMessage");
   },
+//   // Add to your store's state
+// unreadMessages: {},
+
+// // Add these actions
+// incrementUnread: (userId) => {
+//   set((state) => ({
+//     unreadMessages: {
+//       ...state.unreadMessages,
+//       [userId]: (state.unreadMessages[userId] || 0) + 1
+//     }
+//   }));
+// },
+// resetUnread: (userId) => {
+//   set((state) => ({
+//     unreadMessages: {
+//       ...state.unreadMessages,
+//       [userId]: 0
+//     }
+//   }));
+// },
 
   setSelectedUser: (selectedUser) => set({ selectedUser }),
 }));
+
+// the main code is here
