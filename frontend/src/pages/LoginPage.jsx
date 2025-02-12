@@ -26,7 +26,7 @@ const LoginPage = () => {
           <div className="text-center mb-8">
   <div className="flex flex-col items-center gap-2 group">
     {/* Gradient Animated Logo */}
-    <div className="w-20 h-20 rounded-[18%] bg-gradient-to-r from-[#2563eb] to-[#9333ea] flex items-center justify-center shadow-lg transform transition-all duration-500 hover:scale-105 hover:rotate-6 relative overflow-hidden cursor-pointer">
+    <div className="w-14 h-14 rounded-[18%] bg-gradient-to-r from-[#2563eb] to-[#9333ea] flex items-center justify-center shadow-lg transform transition-all duration-500 hover:scale-105 hover:rotate-6 relative overflow-hidden cursor-pointer">
       
       {/* Floating Container */}
       <div className="absolute inset-0 flex items-center justify-center animate-float-3d">
