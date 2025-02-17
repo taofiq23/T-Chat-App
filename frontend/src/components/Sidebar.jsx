@@ -24,7 +24,7 @@ const Sidebar = () => {
   if (isUsersLoading) return <SidebarSkeleton />;
 
   return (
-    <aside className="h-full w-20 lg:w-72 border-r border-base-300 flex flex-col items-center transition-all duration-200 bg-gradient-to-b from-base-100/50 to-base-200/30">
+    <aside className="h-full w-72 border-r border-base-300 flex flex-col items-center transition-all duration-200 bg-gradient-to-b from-base-100/50 to-base-200/30">
       {/* Contacts Header */}
       <div className="w-full p-4 border-b border-base-300 relative group">
         <div className="flex flex-col items-center justify-center gap-1">
@@ -34,10 +34,10 @@ const Sidebar = () => {
               {onlineUsers.length - 1}
             </span>
           </div>
-          <span className="text-2xl font-bold bg-gradient-to-r from-white to-blue-200 bg-clip-text text-transparent hidden lg:block mt-2 backdrop-blur-sm">
+          <span className="text-2xl font-bold bg-gradient-to-r from-white to-blue-200 bg-clip-text text-transparent mt-2 backdrop-blur-sm">
             Active Connections
           </span>
-          <span className="text-xs text-neutral-content/60 hidden lg:block">
+          <span className="text-xs text-neutral-content/60">
             Online Now
           </span>
         </div>
@@ -66,7 +66,7 @@ const Sidebar = () => {
                 <span className="absolute bottom-0 right-0 size-3 bg-green-500 rounded-full border-2 border-base-100" />
               )}
             </div>
-            <div className="hidden lg:block text-left min-w-0">
+            <div className="text-left min-w-0">
               <h3 className="font-medium text-neutral-content">{user.fullName}</h3>
               <p className="text-xs text-neutral-content/60 flex items-center gap-1">
                 {onlineUsers.includes(user._id) ? (
@@ -86,7 +86,7 @@ const Sidebar = () => {
       </div>
 
       {/* Online filter toggle */}
-      <div className="mt-4 hidden lg:flex items-center gap-2">
+      <div className="mt-4 flex items-center gap-2">
         <label className="cursor-pointer flex items-center gap-2">
           <input
             type="checkbox"
@@ -102,5 +102,3 @@ const Sidebar = () => {
 };
 
 export default Sidebar;
-
-// the main code is here

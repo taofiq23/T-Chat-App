@@ -219,3 +219,10 @@
 .animate-conic-sweep-fast { animation: conic-sweep-fast 5s linear infinite; }
 .animate-ripple-circle { animation: ripple-circle 3s ease-out infinite; }
 .animate-text-glow-fast { animation: text-glow 2s ease-in-out infinite; }
+
+/* for profile page */
+.bg-glass {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}

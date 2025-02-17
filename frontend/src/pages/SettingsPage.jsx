@@ -18,33 +18,34 @@ const SettingsPage = () => {
           <p className="text-sm text-base-content/70">Choose a theme for your chat interface</p>
         </div>
 
+        {/* Theme Selection Grid */}
         <div className="grid grid-cols-4 sm:grid-cols-6 md:grid-cols-8 gap-2">
-  {['light', 'dark', 'emerald', 'synthwave', 'retro', 'black', 'luxury', 'dracula', 'business', 'lemonade', 'winter', 'dim'].map((t) => (
-    <button
-      key={t}
-      className={`
-        group flex flex-col items-center gap-1.5 p-2 rounded-lg transition-colors
-        ${theme === t ? "bg-base-200" : "hover:bg-base-200/50"}
-      `}
-      onClick={() => setTheme(t)}
-    >
-      <div className="relative h-8 w-full rounded-md overflow-hidden" data-theme={t}>
-        <div className="absolute inset-0 grid grid-cols-4 gap-px p-1">
-          <div className="rounded bg-primary"></div>
-          <div className="rounded bg-secondary"></div>
-          <div className="rounded bg-accent"></div>
-          <div className="rounded bg-neutral"></div>
+          {THEMES.map((t) => (
+            <button
+              key={t}
+              className={`
+                group flex flex-col items-center gap-1.5 p-2 rounded-lg transition-colors
+                ${theme === t ? "bg-base-200" : "hover:bg-base-200/50"}
+              `}
+              onClick={() => setTheme(t)}
+            >
+              <div className="relative h-8 w-full rounded-md overflow-hidden" data-theme={t}>
+                <div className="absolute inset-0 grid grid-cols-4 gap-px p-1">
+                  <div className="rounded bg-primary"></div>
+                  <div className="rounded bg-secondary"></div>
+                  <div className="rounded bg-accent"></div>
+                  <div className="rounded bg-neutral"></div>
+                </div>
+              </div>
+              <span className="text-[11px] font-medium truncate w-full text-center">
+                {t === 'dracula' ? 'Dracula' : 
+                 t === 'lemonade' ? 'Lemonade' :
+                 t === 'dim' ? 'Dim' :
+                 t.charAt(0).toUpperCase() + t.slice(1)}
+              </span>
+            </button>
+          ))}
         </div>
-      </div>
-      <span className="text-[11px] font-medium truncate w-full text-center">
-        {t === 'dracula' ? 'Dracula' : 
-         t === 'lemonade' ? 'Lemonade' :
-         t === 'dim' ? 'Dim' :
-         t.charAt(0).toUpperCase() + t.slice(1)}
-      </span>
-    </button>
-  ))}
-</div>
 
         {/* Preview Section */}
         <h3 className="text-lg font-semibold mb-3">Preview</h3>
@@ -116,4 +117,5 @@ const SettingsPage = () => {
     </div>
   );
 };
+
 export default SettingsPage;
