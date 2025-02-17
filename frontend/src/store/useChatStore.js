@@ -9,82 +9,118 @@ export const useChatStore = create((set, get) => ({
   selectedUser: null,
   isUsersLoading: false,
   isMessagesLoading: false,
+  unreadMessages: {},
 
+  // Increment unread count for a user
+  incrementUnreadCount: (userId) => set(state => ({
+    unreadMessages: {
+      ...state.unreadMessages,
+      [userId]: (state.unreadMessages[userId] || 0) + 1,
+    },
+  })),
+
+  // Reset unread count for a user
+  resetUnreadCount: (userId) => set(state => ({
+    unreadMessages: { ...state.unreadMessages, [userId]: 0 },
+  })),
+
+  // Fetch all users
   getUsers: async () => {
     set({ isUsersLoading: true });
     try {
       const res = await axiosInstance.get("/messages/users");
       set({ users: res.data });
     } catch (error) {
-      toast.error(error.response.data.message);
+      toast.error(error.response?.data?.message || "Failed to fetch users");
     } finally {
       set({ isUsersLoading: false });
     }
   },
 
+  // Fetch messages for a specific user
   getMessages: async (userId) => {
     set({ isMessagesLoading: true });
     try {
       const res = await axiosInstance.get(`/messages/${userId}`);
       set({ messages: res.data });
     } catch (error) {
-      toast.error(error.response.data.message);
+      toast.error(error.response?.data?.message || "Failed to fetch messages");
     } finally {
       set({ isMessagesLoading: false });
     }
   },
+
+  // Send a message
   sendMessage: async (messageData) => {
     const { selectedUser, messages } = get();
+    if (!selectedUser) return;
     try {
       const res = await axiosInstance.post(`/messages/send/${selectedUser._id}`, messageData);
       set({ messages: [...messages, res.data] });
     } catch (error) {
-      toast.error(error.response.data.message);
+      toast.error(error.response?.data?.message || "Failed to send message");
     }
   },
 
+  // Subscribe to real-time messages for the selected user
   subscribeToMessages: () => {
-    const { selectedUser } = get();
-    if (!selectedUser) return;
-
+    const { selectedUser, incrementUnreadCount } = get();
     const socket = useAuthStore.getState().socket;
+    const authUser = useAuthStore.getState().authUser;
+    
+    if (!selectedUser || !socket || !authUser) return () => {};
 
-    socket.on("newMessage", (newMessage) => {
-      const isMessageSentFromSelectedUser = newMessage.senderId === selectedUser._id;
-      if (!isMessageSentFromSelectedUser) return;
+    const handleNewMessage = (newMessage) => {
+      set({ messages: [...get().messages, newMessage] });
+      if (newMessage.senderId !== authUser._id) {
+        incrementUnreadCount(newMessage.senderId);
+      }
+    };
 
-      set({
-        messages: [...get().messages, newMessage],
-      });
-    });
+    socket.on("newMessage", handleNewMessage);
+    return () => socket.off("newMessage", handleNewMessage);
   },
 
-  unsubscribeFromMessages: () => {
+  // Initialize global message listener
+  initializeGlobalListeners: () => {
     const socket = useAuthStore.getState().socket;
-    socket.off("newMessage");
+    const authUser = useAuthStore.getState().authUser;
+    
+    if (!socket || !authUser) {
+      console.warn("Socket or user not available for global listeners");
+      return () => {};
+    }
+
+    const { incrementUnreadCount } = get();
+    
+    const globalMessageHandler = (newMessage) => {
+      if (newMessage.receiverId === authUser._id) {
+        incrementUnreadCount(newMessage.senderId);
+        if (!document.hasFocus() && Notification.permission === "granted") {
+          new Notification(`New message from ${newMessage.senderName}`, {
+            body: newMessage.text || "Attachment"
+          });
+        }
+      }
+    };
+
+    socket.on("newMessage", globalMessageHandler);
+    return () => socket.off("newMessage", globalMessageHandler);
   },
-//   // Add to your store's state
-// unreadMessages: {},
 
-// // Add these actions
-// incrementUnread: (userId) => {
-//   set((state) => ({
-//     unreadMessages: {
-//       ...state.unreadMessages,
-//       [userId]: (state.unreadMessages[userId] || 0) + 1
-//     }
-//   }));
-// },
-// resetUnread: (userId) => {
-//   set((state) => ({
-//     unreadMessages: {
-//       ...state.unreadMessages,
-//       [userId]: 0
-//     }
-//   }));
-// },
+  // Cleanup all listeners
+  cleanupGlobalListeners: () => {
+    const socket = useAuthStore.getState().socket;
+    if (socket) {
+      socket.off("newMessage");
+    }
+  },
 
-  setSelectedUser: (selectedUser) => set({ selectedUser }),
+  // Set the selected user with cleanup
+  setSelectedUser: (selectedUser) => {
+    set({ selectedUser });
+    if (!selectedUser) {
+      set({ messages: [] });
+    }
+  },
 }));
-
-// the main code is here

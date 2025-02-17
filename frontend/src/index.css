@@ -226,3 +226,75 @@
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
 }
+
+/* for Nochat-container */
+/* Candle Container */
+.candle-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+/* Candle */
+.candle {
+  position: relative;
+  width: 20px; /* Original size */
+  height: 60px; /* Original size */
+  background: #f0e6d2; /* Candle wax color */
+  border-radius: 10px 10px 0 0;
+}
+
+/* Wick */
+.wick {
+  position: absolute;
+  top: -5px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 2px;
+  height: 10px;
+  background: #333;
+  border-radius: 2px 2px 0 0;
+}
+
+/* Flame */
+.flame {
+  position: absolute;
+  top: -20px; /* Position above the wick */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 10px; /* Flame width */
+  height: 20px; /* Flame height */
+  background: linear-gradient(to bottom, #ff5722, #ff9800, #ffeb3b);
+  border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+  animation: flicker 1.5s infinite;
+}
+
+/* Flame Flicker */
+.flame-flicker {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+  animation: flicker 1s infinite alternate;
+}
+
+/* Keyframes for Flicker */
+@keyframes flicker {
+  0%, 100% {
+    transform: translateX(-50%) scale(1);
+  }
+  25% {
+    transform: translateX(-50%) scale(0.95, 1.05);
+  }
+  50% {
+    transform: translateX(-50%) scale(1.05, 0.95);
+  }
+  75% {
+    transform: translateX(-50%) scale(0.98, 1.02);
+  }
+}

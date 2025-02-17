@@ -1,14 +1,16 @@
 import mongoose from "mongoose";
 
-const messageSchema = new mongoose.Schema(
+const { Schema } = mongoose;
+
+const messageSchema = new Schema(
   {
     senderId: {
-      type: mongoose.Schema.Types.ObjectId,
+      type: Schema.Types.ObjectId,
       ref: "User",
       required: [true, "Sender ID is required"],
     },
     receiverId: {
-      type: mongoose.Schema.Types.ObjectId,
+      type: Schema.Types.ObjectId,
       ref: "User",
       required: [true, "Receiver ID is required"],
     },
@@ -22,7 +24,7 @@ const messageSchema = new mongoose.Schema(
       validate: {
         validator: (value) => {
           if (!value) return true;
-          return /\.(jpeg|jpg|png|gif|webp)$/i.test(value); // Added webp support
+          return /\.(jpeg|jpg|png|gif|webp)$/i.test(value);
         },
         message: "Invalid image URL",
       },
@@ -31,8 +33,14 @@ const messageSchema = new mongoose.Schema(
       type: Boolean,
       default: false,
     },
+    readBy: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "User",
+      },
+    ], // Track users who have read the message
   },
-  { 
+  {
     timestamps: true,
     toJSON: { virtuals: true },
     toObject: { virtuals: true },
